@@ -2,12 +2,7 @@ import express from "express";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
+import userRoutes from "./routes/user.routes";
 
-// Define item-related routes
-
-/* ************************************************************************* */
-
+router.use("/user", userRoutes);
 export default router;
