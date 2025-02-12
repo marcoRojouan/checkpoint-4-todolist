@@ -19,7 +19,7 @@ export const verifyingPassword: RequestHandler = async (req, res, next) => {
     const isValid = await argonVerifier(passwordFromDB, password);
 
     if (!isValid) {
-      res.json({ message: "pseudo ou mot de passe incorrect" });
+      res.status(404).json({ message: "pseudo ou mot de passe incorrect" });
       return;
     }
 
