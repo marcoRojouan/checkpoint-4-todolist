@@ -47,6 +47,31 @@ class UserRepository {
 
     return roleId[0].role_id;
   }
+
+  async readAll() {
+    const [users] = await databaseClient.query<Rows>(
+      `
+      SELECT user.id, user.pseudo, role.label
+      FROM user
+      JOIN role ON user.role_id = role.id
+      ORDER BY pseudo
+      `,
+    );
+
+    return users;
+  }
+
+  async delete(pseudo: string) {
+    const [result] = await databaseClient.query<Result>(
+      `
+      DELETE FROM user
+      WHERE pseudo = ?
+      `,
+      [pseudo],
+    );
+
+    return result.affectedRows;
+  }
 }
 
 export default new UserRepository();

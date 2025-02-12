@@ -97,7 +97,7 @@ const Register = () => {
           )}
         </label>
         <button
-          className="w-32 h-8 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          className="w-32 h-8 bg-blue-500 hover:bg-blue-400 text-white font-bold py-0.5 px-2 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           type="submit"
         >
           {" "}
