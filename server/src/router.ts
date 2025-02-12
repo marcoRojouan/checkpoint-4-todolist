@@ -10,4 +10,8 @@ import userRoutes from "./routes/user.routes";
 
 router.use("/user", userRoutes);
 
+import thingRoutes from "./routes/thing.routes";
+
+router.use("/thing", thingRoutes);
+
 export default router;

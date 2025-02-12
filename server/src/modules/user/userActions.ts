@@ -53,3 +53,34 @@ export const readRoleFromToken: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
+export const readAll: RequestHandler = async (req, res, next) => {
+  try {
+    const usersFromDb = await userRepository.readAll();
+
+    if (usersFromDb.length === 0) {
+      res.status(404).json({ message: "Données non récupérées" });
+    }
+
+    res.json(usersFromDb);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const userPseudo = req.params.pseudo;
+
+    const affectedRows = await userRepository.delete(userPseudo);
+
+    if (affectedRows === 0) {
+      res.status(404).json({ message: "aucun utilisateur trouvé" });
+    }
+
+    res.json({ message: "utilisateur supprimé" });
+    return;
+  } catch (err) {
+    next(err);
+  }
+};
