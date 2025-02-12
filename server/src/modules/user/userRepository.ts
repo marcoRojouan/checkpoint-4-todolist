@@ -19,7 +19,7 @@ class UserRepository {
   }
 
   async readPassword(pseudo: string) {
-    const [password] = await databaseClient.query<Rows>(
+    const [user] = await databaseClient.query<Rows>(
       `
       SELECT password
       FROM user
@@ -28,7 +28,24 @@ class UserRepository {
       [pseudo],
     );
 
-    return password[0].password;
+    if (user.length === 0) {
+      return null; // Si aucun utilisateur n'est trouvé, retourne null
+    }
+
+    return user[0].password;
+  }
+
+  async readRoleByPseudo(pseudo: string) {
+    const [roleId] = await databaseClient.query<Rows>(
+      `
+      SELECT role_id
+      FROM user 
+      WHERE pseudo = ?
+      `,
+      [pseudo],
+    );
+
+    return roleId[0].role_id;
   }
 }
 

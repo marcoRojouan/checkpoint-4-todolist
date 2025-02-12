@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 type PayloadType = {
-  username: string;
+  pseudo: string;
 };
 
 export const tokenGenerator = async (payload: PayloadType) => {
