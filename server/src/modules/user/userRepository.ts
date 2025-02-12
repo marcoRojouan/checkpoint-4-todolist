@@ -51,8 +51,9 @@ class UserRepository {
   async readAll() {
     const [users] = await databaseClient.query<Rows>(
       `
-      SELECT id, pseudo
+      SELECT user.id, user.pseudo, role.label
       FROM user
+      JOIN role ON user.role_id = role.id
       ORDER BY pseudo
       `,
     );

@@ -1,7 +1,27 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "JetBrains";
+  src: url("/fonts/JetBrainsMono-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto_Condensed-Regular.ttf");
+}
+
+:root {
+  --font-title: "JetBrains";
+  --font-text: "Roboto";
+}
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-text);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
 }

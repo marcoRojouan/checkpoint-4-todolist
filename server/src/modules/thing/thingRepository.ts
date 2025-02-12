@@ -5,9 +5,10 @@ class ThingRepository {
   async readAll() {
     const [things] = await databaseClient.query<Rows>(
       `
-          SELECT thing.*, user.pseudo
+          SELECT thing.id, thing.content, thing.done, user.pseudo, priority.label
           FROM thing
-          JOIN user ON thing.user_id=user.id  
+          JOIN user ON thing.user_id=user.id 
+          JOIN priority ON thing.priority_id=priority.id
           ORDER BY pseudo
           `,
     );

@@ -36,14 +36,9 @@ export const destroyUserThings: RequestHandler = async (req, res, next) => {
   try {
     const thingPseudo = req.params.pseudo;
 
-    const affectedRows = await thingRepository.deleteByPseudo(thingPseudo);
+    await thingRepository.deleteByPseudo(thingPseudo);
 
-    if (affectedRows === 0) {
-      res.status(404).json({ message: "aucune tâche trouvée" });
-    }
-
-    res.json({ message: "utilisateur supprimé" });
-    return;
+    next();
   } catch (err) {
     next(err);
   }
