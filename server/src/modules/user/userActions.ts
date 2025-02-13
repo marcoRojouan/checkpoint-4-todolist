@@ -46,6 +46,7 @@ export const readRoleFromToken: RequestHandler = async (req, res, next) => {
 
     if (roleId !== 1) {
       res.json({ isAdmin: false, message: "tu n'es pas un admin" });
+      return;
     }
 
     res.json({ isAdmin: true, message: "bienvenu admin" });

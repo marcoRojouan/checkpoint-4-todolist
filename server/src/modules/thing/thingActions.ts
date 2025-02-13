@@ -27,9 +27,9 @@ export const edit: RequestHandler = async (req, res, next) => {
       done: 1,
     };
 
-    const affectedRows = await thingRepository.update(thing);
+    await thingRepository.update(thing);
 
-    res.json(affectedRows);
+    res.json({ message: "Et une tâche accomplie !" });
   } catch (err) {
     next(err);
   }
@@ -65,7 +65,7 @@ export const readDoneThingsById: RequestHandler = async (req, res, next) => {
   try {
     const userId = req.body.user_id;
 
-    const doneThings = await thingRepository.readNotDone(userId);
+    const doneThings = await thingRepository.readDone(userId);
 
     res.json(doneThings);
   } catch (err) {

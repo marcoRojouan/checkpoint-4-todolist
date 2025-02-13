@@ -29,6 +29,7 @@ export const verifyToken: RequestHandler = async (req, res, next) => {
 
     if (!token) {
       res.status(403).json({ authentified: false });
+      return;
     }
 
     const verifiedToken = jwt.verify(

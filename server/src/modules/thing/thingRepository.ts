@@ -40,6 +40,7 @@ class ThingRepository {
       JOIN priority ON thing.priority_id=priority.id
       WHERE thing.user_id = ? 
       AND thing.done = 0
+      ORDER BY priority.id ASC
       `,
       [userId],
     );
