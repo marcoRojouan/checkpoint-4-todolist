@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 import type { PriorityType } from "../../lib/definitions";
 
 class PriorityRepository {
@@ -14,6 +14,17 @@ class PriorityRepository {
     );
 
     return result.insertId;
+  }
+
+  async readAll() {
+    const [priorities] = await databaseClient.query<Rows>(
+      `
+      SELECT * 
+      FROM priority 
+      `,
+    );
+
+    return priorities;
   }
 }
 

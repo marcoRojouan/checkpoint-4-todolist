@@ -48,6 +48,19 @@ class UserRepository {
     return roleId[0].role_id;
   }
 
+  async readIdByPseudo(pseudo: string) {
+    const [user] = await databaseClient.query<Rows>(
+      `
+      SELECT id
+      FROM user 
+      WHERE pseudo = ?
+      `,
+      [pseudo],
+    );
+
+    return user[0].id;
+  }
+
   async readAll() {
     const [users] = await databaseClient.query<Rows>(
       `

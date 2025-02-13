@@ -1,7 +1,9 @@
 import express from "express";
-import { create } from "../modules/priority/priorityActions";
+import { create, readAll } from "../modules/priority/priorityActions";
 
 const router = express.Router();
+
+router.get("/", readAll);
 
 router.post("/", create);
 

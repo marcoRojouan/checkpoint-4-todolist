@@ -54,6 +54,28 @@ export const readRoleFromToken: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const readIdFromToken: RequestHandler = async (req, res, next) => {
+  try {
+    const tokenFromCookies = (await jwt.decode(
+      req.cookies.auth_token,
+    )) as TokenType;
+
+    const pseudo: string = tokenFromCookies?.pseudo;
+
+    const userId = await userRepository.readIdByPseudo(pseudo);
+
+    if (!userId) {
+      res.status(404).json({ message: "pas d'utilisateur trouvé" });
+    }
+
+    req.body.user_id = userId;
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const readAll: RequestHandler = async (req, res, next) => {
   try {
     const usersFromDb = await userRepository.readAll();
