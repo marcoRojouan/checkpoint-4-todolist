@@ -5,11 +5,16 @@ export type UserType = {
   label: string;
 };
 
-export type AuthType = {
+export type AuthAdminType = {
   isAdmin: boolean;
 };
 
+export type AuthUserType = {
+  authentified: boolean;
+};
+
 export type PriorityType = {
+  id: number;
   label: string;
 };
 
@@ -19,4 +24,9 @@ export type ThingType = {
   done: number;
   pseudo: string;
   label: string;
+};
+
+export type NewThingType = {
+  content: string;
+  priority_id: number;
 };

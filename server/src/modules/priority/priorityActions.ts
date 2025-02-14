@@ -16,3 +16,13 @@ export const create: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
+export const readAll: RequestHandler = async (req, res, next) => {
+  try {
+    const priorityFromDb = await priorityRepository.readAll();
+
+    res.json(priorityFromDb);
+  } catch (err) {
+    next(err);
+  }
+};

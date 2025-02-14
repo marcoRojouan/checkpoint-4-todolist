@@ -27,12 +27,13 @@ const Register = () => {
   };
 
   return (
-    <section className="shadow-md shadow-gray-600">
+    <section className="flex flex-col items-center shadow-md shadow-gray-600 w-md">
+      <h2 className="text-2xl">Créer ton compte</h2>
       <form
-        className="h-56 w-80 flex flex-col items-center gap-3"
+        className="h-88 w-80 flex flex-col items-center justify-evenly gap-5"
         onSubmit={handleSubmit(formSubmit)}
       >
-        <label className="flex flex-col gap-0.5" htmlFor="pseudo">
+        <label className="flex flex-col w-3xs gap-0.5" htmlFor="pseudo">
           Pseudo
           <input
             className="inset-shadow-sm inset-shadow-gray-700 rounded-sm"
@@ -51,7 +52,7 @@ const Register = () => {
           />
           {errors.pseudo && <span>{errors.pseudo.message}</span>}
         </label>
-        <label className="flex flex-col gap-0.5" htmlFor="password">
+        <label className="flex flex-col w-3xs gap-0.5" htmlFor="password">
           Mot de passe
           <input
             className="inset-shadow-sm inset-shadow-gray-700 rounded-sm"
@@ -70,7 +71,10 @@ const Register = () => {
           />
           {errors.password && <span>{errors.password.message}</span>}
         </label>
-        <label className="flex flex-col gap-0.5" htmlFor="confirmPassword">
+        <label
+          className="flex flex-col w-3xs gap-0.5"
+          htmlFor="confirmPassword"
+        >
           Confirmer le mot de passe
           <input
             className="inset-shadow-sm inset-shadow-gray-700 rounded-sm"

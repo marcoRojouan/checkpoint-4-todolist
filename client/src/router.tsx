@@ -5,7 +5,11 @@ import AdminCreateRole from "./pages/AdminCreateRole";
 import AdminPage from "./pages/AdminPage";
 import AdminThingsList from "./pages/AdminThingsList";
 import AdminUserList from "./pages/AdminUserList";
+import Error404 from "./pages/Error404";
 import HomePage from "./pages/HomePage";
+import UserDonePage from "./pages/UserDonePage";
+import UserNotDonePage from "./pages/UserNotDonePage";
+import UserPage from "./pages/UserPage";
 
 export const router = createBrowserRouter([
   {
@@ -42,5 +46,27 @@ export const router = createBrowserRouter([
         element: <AdminCreateRole />,
       },
     ],
+  },
+  {
+    path: "/to-do-liste",
+    element: <UserPage />,
+    loader: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/auth/authentified`, {
+        credentials: "include",
+      }),
+    children: [
+      {
+        path: "/to-do-liste/mes-taches",
+        element: <UserNotDonePage />,
+      },
+      {
+        path: "/to-do-liste/accomplies",
+        element: <UserDonePage />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Error404 />,
   },
 ]);

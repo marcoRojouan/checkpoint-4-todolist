@@ -12,3 +12,14 @@ export type TokenType = {
   iat: number;
   exp: number;
 };
+
+export type ThingType = {
+  content: string;
+  priority_id: number;
+  user_id: number;
+};
+
+export type ThingEditType = {
+  id: number;
+  done: number;
+};

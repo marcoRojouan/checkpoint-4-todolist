@@ -46,9 +46,32 @@ export const readRoleFromToken: RequestHandler = async (req, res, next) => {
 
     if (roleId !== 1) {
       res.json({ isAdmin: false, message: "tu n'es pas un admin" });
+      return;
     }
 
     res.json({ isAdmin: true, message: "bienvenu admin" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const readIdFromToken: RequestHandler = async (req, res, next) => {
+  try {
+    const tokenFromCookies = (await jwt.decode(
+      req.cookies.auth_token,
+    )) as TokenType;
+
+    const pseudo: string = tokenFromCookies?.pseudo;
+
+    const userId = await userRepository.readIdByPseudo(pseudo);
+
+    if (!userId) {
+      res.status(404).json({ message: "pas d'utilisateur trouvé" });
+    }
+
+    req.body.user_id = userId;
+
+    next();
   } catch (err) {
     next(err);
   }
